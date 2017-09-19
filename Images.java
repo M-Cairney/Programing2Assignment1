@@ -6,6 +6,6 @@ public class Images extends JPanel {
     public int h = Main.height;
 
     public Images(){
-        this.setBackground(Color.BLACK);
+        this.setBackground(Color.WHITE);
     }
 }
