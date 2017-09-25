@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 
 public class Keying extends JPanel {
@@ -18,10 +17,12 @@ public class Keying extends JPanel {
 
     public int count = 0;
 
-    public static ArrayList<Integer> startx = new ArrayList<Integer>();
-    public static ArrayList<Integer> starty = new ArrayList<Integer>();
-    public static ArrayList<Integer> finishx = new ArrayList<Integer>();
-    public static ArrayList<Integer> finishy = new ArrayList<Integer>();
+    public static int startx;
+    public static int starty;
+    public static int finishx;
+    public static int finishy;
+
+    public JetWall JetWallLines = new JetWall();
 
 
     public Keying(Display f, Images i){
@@ -29,16 +30,17 @@ public class Keying extends JPanel {
 
         f.addKeyListener(new KeyAdapter(){
             public void keyPressed(KeyEvent e){
-                startx.add(character.x);
-                starty.add(character.y);
+                startx = character.x;
+                starty = character.y;
 
                 if (e.getKeyCode() ==  KeyEvent.VK_D){
                     right = true;
                     left = false;
                     up = false;
                     down = false;
-                    finishx.add(character.x);
-                    finishy.add(character.y);
+                    finishx = character.x;
+                    finishy = character.y;
+                    JetWallLines.addLine(startx, starty, finishx, finishy, Color.BLACK);
                     count+=1;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_A){
@@ -46,8 +48,9 @@ public class Keying extends JPanel {
                     right = false;
                     up = false;
                     down = false;
-                    finishx.add(character.x);
-                    finishy.add(character.y);
+                    finishx = character.x;
+                    finishy = character.y;
+                    JetWallLines.addLine(startx, starty, finishx, finishy, Color.BLACK);
                     count+=1;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_W){
@@ -55,8 +58,9 @@ public class Keying extends JPanel {
                     left = false;
                     down = false;
                     right = false;
-                    finishx.add(character.x);
-                    finishy.add(character.y);
+                    finishx = character.x;
+                    finishy = character.y;
+                    JetWallLines.addLine(startx, starty, finishx, finishy, Color.BLACK);
                     count+=1;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_S){
@@ -64,8 +68,9 @@ public class Keying extends JPanel {
                     up = false;
                     right = false;
                     left = false;
-                    finishx.add(character.x);
-                    finishy.add(character.y);
+                    finishx = character.x;
+                    finishy = character.y;
+                    JetWallLines.addLine(startx, starty, finishx, finishy, Color.BLACK);
                     count+=1;
                 }
             }
@@ -115,10 +120,11 @@ public class Keying extends JPanel {
         }
         repaint();
         ///if(!finishx.isEmpty()) {
-           /// for (int i = 0; i < count; ++i)
-                ///g.drawLine(startx.get(count-1), starty.get(count-1), finishx.get(count), finishy.get(count));}
+            ///for (int i = 0; i >= count; ++i)
+               /// g.drawLine(startx.get(count-1), starty.get(count-1), finishx.get(count), finishy.get(count));
+        }
 
 
 
     }
-}
+
